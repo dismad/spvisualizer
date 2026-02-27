@@ -1,0 +1,19 @@
+[package]
+name = "spvisualizer"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+orchard = { version = "0.11", default-features = false, features = ["unstable-frost", "test-dependencies"] }
+hex = "0.4"
+bip39 = "2.0"
+subtle = "2.6"
+zcash_primitives = "0.26"
+zcash_keys = { version = "0.8", features = ["test-dependencies", "unstable", "orchard", "sapling", "transparent-inputs"] }
+zcash_protocol = { version = "0.5", features = ["local-consensus"] }
+qrcode = { version = "0.14", optional = false, default-features = false }
+zcash_address = "0.10.1"
+blake2b_simd = "1.0"
+pasta_curves = "0.5" # For pallas::Scalar
+
+
