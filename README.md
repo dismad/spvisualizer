@@ -23,3 +23,17 @@ note: this is for *educational purposes only*
 
 
 
+## Sources
+
+ * https://github.com/zcash/zips/tree/main/protocol
+ * https://zips.z.cash/zip-0316#encoding-of-unified-full-incoming-viewing-keys
+ * https://zips.z.cash/zip-0032#orchard-internal-key-derivation
+ * https://free2z.cash/uploadz/public/ZcashTutorial/librustzcash-a-rust-crates.mp4
+
+note: I used Grok heavily, see any errors, please report :)
+
+
+
+
+
+
