@@ -3,7 +3,7 @@ use blake2b_simd::Params;
 use pasta_curves::group::ff::{FromUniformBytes, PrimeField};
 use hex::decode;
 use orchard::keys::{SpendingKey, FullViewingKey, IncomingViewingKey, Scope};
-use zcash_primitives::zip32::AccountId;
+use zip32::AccountId;
 use std::{env, process};
 use subtle::CtOption;
 use zcash_keys::keys::{UnifiedFullViewingKey, UnifiedIncomingViewingKey};
@@ -13,7 +13,8 @@ use zcash_address::unified::{Encoding, Address as UnifiedAddress, Receiver};
 
 fn main() {
 
- println!("\nTHE ORCHARD MAP\n\n");
+ println!("\nTHE ORCHARD / IRONWOOD KEY MAP\n");
+ println!("(Ironwood reuses the same Orchard key hierarchy under ProtocolVersion::V3)\n");
  println!("\x1b[34m+---------------------+\x1b[0m");
     println!("\x1b[34m| Orchard             |\x1b[0m");
     println!("\x1b[34m| spending key        |\x1b[0m");
@@ -198,5 +199,15 @@ incoming viewing key / unified full viewing key as defined in [ZIP-316].\n");
     let myaddress =UnifiedAddress::try_from_items(vec![receiver])
         .expect("Orchard receivers are valid items for a UA");
 
-    println!("Payment address at diversifier index 0 \"encoded\" (Unified Address): {}", myaddress.encode(&zcash_primitives::consensus::NetworkType::Main));
+    println!("Payment address at diversifier index 0 \"encoded\" (Unified Address): {}", myaddress.encode(&zcash_protocol::consensus::NetworkType::Main));
+
+    println!("\n──────────────────────────────────────────────────────────────");
+    println!("Ironwood note (NU6.3):");
+    println!("  The same SpendingKey / FVK / IVK hierarchy above is used");
+    println!("  for both ValuePool::Orchard and ValuePool::Ironwood.");
+    println!("  Under ProtocolVersion::V3 the circuit is shared; only the");
+    println!("  note commitment tree, nullifier set and chain value pool");
+    println!("  differ. Orchard is now restricted (no new cross-address");
+    println!("  spends, no coinbase); Ironwood is the active shielded pool.");
+    println!("──────────────────────────────────────────────────────────────");
 }
