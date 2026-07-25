@@ -15,4 +15,5 @@ zcash_address = "0.13"
 zip32 = "0.2"
 blake2b_simd = "1.0"
 pasta_curves = "0.5"
+bech32 = "0.11"
 qrcode = { version = "0.14", default-features = false }
